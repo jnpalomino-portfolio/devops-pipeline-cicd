@@ -1,6 +1,25 @@
-name: Reusable Deploy Workflow
+name: Reusable CI/CD Workflow
 on:
   workflow_call:
+    inputs:
+      namespace:
+        required: true
+        type: string
+      tecnologia:
+        required: true
+        type: string
+      componente:
+        required: true
+        type: string
+      identificador:
+        required: true
+        type: string
+      tipo:
+        required: true
+        type: string
+      ambiente:
+        required: true
+        type: string
 
 jobs:
   build:
@@ -9,5 +28,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Print App Name
-        run: echo "Deploying"
+      - name: Imprimir variables recibidas
+        run: |
+          echo "namespace: ${{ inputs.namespace }}"
+          echo "tecnologia: ${{ inputs.tecnologia }}"
+          echo "componente: ${{ inputs.componente }}"
+          echo "identificador: ${{ inputs.identificador }}"
+          echo "tipo: ${{ inputs.tipo }}"
+          echo "ambiente: ${{ inputs.ambiente }}"
